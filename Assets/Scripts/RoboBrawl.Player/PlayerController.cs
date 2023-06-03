@@ -10,6 +10,7 @@ namespace RoboBrawl.Player
         public PlayerModel PlayerModel { get; private set; }
 
         private Rigidbody playerRigidBody;
+        private Animator playerAnimator;
 
         public PlayerController(PlayerView playerView, PlayerModel playerModel)
         {
@@ -25,12 +26,23 @@ namespace RoboBrawl.Player
         public void SetInitialVariables( )
         {
             this.playerRigidBody = PlayerView.PlayerRigidBody;
+            this.playerAnimator = PlayerView.PlayerAnimator;
         }
 
         public void Move( float horizontal, float vertical)
         {
-            playerRigidBody.AddForce( PlayerView.transform.forward * horizontal * PlayerModel.MoveSpeed );
-            playerRigidBody.AddRelativeForce( PlayerView.transform.forward * vertical * PlayerModel.MoveSpeed );
+            Vector3 dir = new Vector3( horizontal, 0f, vertical ).normalized;
+            if(dir.magnitude > 0.1f )
+            {
+                playerAnimator.SetBool( "Move", true );
+                float targetAngle = Mathf.Atan2( dir.x, dir.z ) * Mathf.Rad2Deg;
+                PlayerView.transform.rotation = Quaternion.Euler( 0f, targetAngle, 0f );
+                playerRigidBody.AddRelativeForce( Vector3.forward * PlayerModel.MoveSpeed );
+            }
+            else
+            {
+                playerAnimator.SetBool( "Move", false );
+            }
         }
     }
 }

@@ -7,6 +7,6 @@ namespace RoboBrawl.Player
     public class PlayerModel
     {
         public float MoveSpeed { get { return moveSpeed; } set { } }
-        private float moveSpeed = 80f;
+        private float moveSpeed = 50f;
     }
 }

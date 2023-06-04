@@ -8,6 +8,7 @@ namespace RoboBrawl.Player
     {
         public Rigidbody PlayerRigidBody { get { return playerRigidBody; } private set { } }
         public Animator PlayerAnimator { get { return playerAnimator; } set { } }
+        public Transform BulletSpawnPos { get { return bulletSpawnPos; } set { } }
 
         private PlayerController playerController;
         private float horizontalInput;
@@ -15,6 +16,7 @@ namespace RoboBrawl.Player
 
         [SerializeField] private Rigidbody playerRigidBody;
         [SerializeField] private Animator playerAnimator;
+        [SerializeField] private Transform bulletSpawnPos;
         public void SetController(PlayerController playerController )
         {
             this.playerController = playerController;
@@ -32,6 +34,11 @@ namespace RoboBrawl.Player
         {
             horizontalInput = Input.GetAxis( "Horizontal" );
             verticalInput = Input.GetAxis( "Vertical" );
+
+            if ( Input.GetKeyDown( KeyCode.Space ) )
+            {
+                playerController.Shoot( );
+            }
         }
         private void OnCollisionEnter( Collision collision )
         {

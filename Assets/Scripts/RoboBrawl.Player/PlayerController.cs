@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RoboBrawl.Bullets;
 
 namespace RoboBrawl.Player
 {
-    public class PlayerController
+    public class PlayerController: IDamagable
     {
         public PlayerView PlayerView { get; private set; }
         public PlayerModel PlayerModel { get; private set; }
@@ -43,6 +44,12 @@ namespace RoboBrawl.Player
             {
                 playerAnimator.SetBool( "Move", false );
             }
+        }
+
+        public void Shoot( )
+        {
+            BulletView bullet = BulletService.Instance.GetFromPool(PlayerView.BulletSpawnPos);
+            bullet.SetShooterObject( this );
         }
     }
 }

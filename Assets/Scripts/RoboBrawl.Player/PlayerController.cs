@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RoboBrawl.Bullets;
 
 namespace RoboBrawl.Player
 {
@@ -20,7 +19,6 @@ namespace RoboBrawl.Player
 
             PlayerView.SetController( this );
             playerView.gameObject.SetActive( true );
-            Debug.Log( "works" );
             SetInitialVariables( );
         }
 
@@ -39,17 +37,12 @@ namespace RoboBrawl.Player
                 float targetAngle = Mathf.Atan2( dir.x, dir.z ) * Mathf.Rad2Deg;
                 PlayerView.transform.rotation = Quaternion.Euler( 0f, targetAngle, 0f );
                 playerRigidBody.AddRelativeForce( Vector3.forward * PlayerModel.MoveSpeed );
+
             }
             else
             {
                 playerAnimator.SetBool( "Move", false );
             }
-        }
-
-        public void Shoot( )
-        {
-            BulletView bullet = BulletService.Instance.GetFromPool(PlayerView.BulletSpawnPos);
-            bullet.SetShooterObject( this );
         }
     }
 }

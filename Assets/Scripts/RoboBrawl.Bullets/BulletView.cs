@@ -7,8 +7,8 @@ namespace RoboBrawl.Bullets
     public class BulletView : MonoBehaviour
     {
         private Vector3 startingPoint;
-        private float travelDistance = 10f;
-        private float bulletSpeed = 100f;
+        private float travelDistance = 7f;
+        private float bulletSpeed = 10f;
         private Vector3 endingPoint;
         private Vector3 offset;
         private IDamagable shooterObject;

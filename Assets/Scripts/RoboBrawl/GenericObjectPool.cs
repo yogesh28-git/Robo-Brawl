@@ -16,6 +16,7 @@ namespace RoboBrawl
             if (objectPool.Count == 0 )
             {
                 item = CreateNewItem( );
+                item.gameObject.SetActive( false );
             }
             else
             {

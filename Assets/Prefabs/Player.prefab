@@ -1509,8 +1509,8 @@ GameObject:
   - component: {fileID: 3931169205174284247}
   - component: {fileID: 3063393228114277189}
   - component: {fileID: 3148660010358740966}
-  - component: {fileID: 3148660010358740967}
   - component: {fileID: 3148660010358740961}
+  - component: {fileID: 3231826307345440977}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1576,20 +1576,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!136 &3148660010358740967
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3931169205173990391}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.37169018
-  m_Height: 1.5260118
-  m_Direction: 1
-  m_Center: {x: -0.0039710472, y: 0.66444606, z: 1.831073e-10}
 --- !u!114 &3148660010358740961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,7 +1590,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidBody: {fileID: 3148660010358740966}
   playerAnimator: {fileID: 3063393228114277189}
-  bulletSpawnPos: {fileID: 0}
+  bulletSpawnPos: {fileID: 186069425691525591}
+--- !u!65 &3231826307345440977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3931169205173990391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.566871, y: 1.2318856, z: 0.53732866}
+  m_Center: {x: -0.0005451589, y: 0.62966317, z: 0.07166812}
 --- !u!1 &3931169205173990393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +1946,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7777417636419362102}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.24999964, y: 0.63374996, z: 1.1775018}
   m_LocalScale: {x: 1.2499996, y: 1.25, z: 1.2499996}
   m_ConstrainProportionsScale: 0

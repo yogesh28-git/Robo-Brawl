@@ -56,7 +56,7 @@ namespace RoboBrawl.Player
         {
             for ( int i = 0; i < 3; i++ )
             {
-                BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );
+                BulletView bullet = BulletService.Instance.GetFromPool(bulletSpawnPos );
                 bullet.SetShooterObject( playerController );
                 yield return new WaitForSeconds( 0.1f );
             }

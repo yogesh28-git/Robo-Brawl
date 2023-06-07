@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoboBrawl
+namespace RoboBrawl.Enemy
 {
     public class BossEnemyView : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private BossEnemyController bossController;
+        public void SetController(BossEnemyController bossController )
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            this.bossController = bossController;
         }
     }
 }

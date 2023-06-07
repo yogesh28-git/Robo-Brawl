@@ -28,6 +28,23 @@ namespace RoboBrawl
             return item;
         }
 
+        public virtual U TryGetFromPool( Transform spawnPos )
+        {
+            U item;
+            if ( objectPool.Count == 0 )
+            {
+                return null;
+            }
+            else
+            {
+                item = objectPool.Dequeue( );
+            }
+            item.transform.position = spawnPos.position;
+            item.transform.rotation = spawnPos.rotation;
+            item.gameObject.SetActive( true );
+            return item;
+        }
+
         public virtual void ReturnToPool( U item)
         {
             item.gameObject.SetActive( false );

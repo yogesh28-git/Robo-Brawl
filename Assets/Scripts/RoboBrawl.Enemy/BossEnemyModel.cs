@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoboBrawl
+namespace RoboBrawl.Enemy
 {
     public class BossEnemyModel
     {

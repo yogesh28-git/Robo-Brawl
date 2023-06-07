@@ -769,6 +769,7 @@ GameObject:
   - component: {fileID: 5520634619617487699}
   - component: {fileID: 978931610}
   - component: {fileID: 978931609}
+  - component: {fileID: 5812030061366328130}
   m_Layer: 6
   m_Name: Mech
   m_TagString: Untagged
@@ -843,6 +844,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5212157, y: 3.722065, z: 2.4467294}
   m_Center: {x: -0.052647043, y: 1.9876333, z: 0.6952385}
+--- !u!114 &5812030061366328130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253828153574133029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b551e261d5c4b148b7ec9ba3358e1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &253828153574133031
 GameObject:
   m_ObjectHideFlags: 0

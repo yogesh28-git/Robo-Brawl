@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoboBrawl
+namespace RoboBrawl.Enemy
 {
-    public class NewBehaviourScript : MonoBehaviour
+    public class SmallEnemyView : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private SmallEnemyController smallEnemyController;
+        public void SetController( SmallEnemyController smallEnemyController )
         {
-        
+            this.smallEnemyController = smallEnemyController;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

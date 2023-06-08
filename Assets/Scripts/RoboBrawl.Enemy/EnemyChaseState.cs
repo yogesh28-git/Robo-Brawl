@@ -1,21 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using RoboBrawl.Player;
 
-namespace RoboBrawl
+namespace RoboBrawl.Enemy
 {
-    public class EnemyChaseState : MonoBehaviour
+    public class EnemyChaseState : IEnemyState
     {
-        // Start is called before the first frame update
-        void Start()
+        private NavMeshAgent agent;
+        private Transform playerTransformRef;
+
+        public EnemyChaseState(NavMeshAgent agent )
         {
-        
+            this.agent = agent;
+        }
+        public void OnStateEnter( )
+        {
+            playerTransformRef = PlayerService.Instance.PlayerController.PlayerView.transform;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void OnStateExit( )
         {
-        
+            
+        }
+
+        public void OnStateUpdate( )
+        {
+            
+            agent.SetDestination( playerTransformRef.position );
         }
     }
 }

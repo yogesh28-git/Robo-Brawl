@@ -31,7 +31,7 @@ namespace RoboBrawl.Enemy
 
         private void SpawnBoss( )
         {
-            BossEnemyView bossEnemyView = GameObject.Instantiate<BossEnemyView>( bossPrefab, bossSpawnTransform );
+            BossEnemyView bossEnemyView = GameObject.Instantiate<BossEnemyView>( bossPrefab, bossSpawnTransform.position, Quaternion.identity );
             bossEnemyView.gameObject.SetActive( false );
             BossEnemyModel bossEnemyModel = new BossEnemyModel( );
             bossEnemyController = new BossEnemyController( bossEnemyView, bossEnemyModel );
@@ -49,8 +49,6 @@ namespace RoboBrawl.Enemy
                 SmallEnemyController smallEnemyController = new SmallEnemyController( smallEnemyView, smallEnemyModel );
                 ReturnToPool( smallEnemyView );
             }
-
-            
         }
 
         private void SpawnSmallEnemies()

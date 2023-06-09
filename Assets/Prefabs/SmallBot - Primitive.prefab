@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 153165840425091005}
   - component: {fileID: 214907299}
   - component: {fileID: -5405775733657700055}
+  - component: {fileID: 2146142371662510647}
   m_Layer: 0
   m_Name: SmallBot - Primitive
   m_TagString: Untagged
@@ -243,3 +244,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b551e261d5c4b148b7ec9ba3358e1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &2146142371662510647
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402911426795003194}
+  m_Enabled: 0
+  m_AgentTypeID: -334000983
+  m_Radius: 0.49999997
+  m_Speed: 3.5
+  m_Acceleration: 3
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.99999994
+  m_BaseOffset: 0.49999997
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

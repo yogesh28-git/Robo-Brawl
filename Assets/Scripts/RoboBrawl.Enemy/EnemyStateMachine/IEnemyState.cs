@@ -5,5 +5,6 @@ namespace RoboBrawl.Enemy
         public void OnStateEnter( );
         public void OnStateUpdate( );
         public void OnStateExit( );
+        public EnemyStateEnum GetState( );
     }
 }

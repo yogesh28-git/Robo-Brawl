@@ -6,7 +6,5 @@ namespace RoboBrawl.Enemy
 {
     public class SmallEnemyModel
     {
-        public float MoveSpeed { get { return moveSpeed; } set { } }
-        private float moveSpeed = 100f;
     }
 }

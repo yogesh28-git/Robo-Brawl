@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace RoboBrawl.Enemy
 {
-    public class BossEnemyController
+    public class BossEnemyController: IDamagable
     {
         public BossEnemyView BossView { get { return bossView; } set { } }
         public BossEnemyModel BossModel { get { return bossModel; } set { } }
 
         private BossEnemyView bossView;
         private BossEnemyModel bossModel;
+
         public BossEnemyController( BossEnemyView bossView, BossEnemyModel bossModel )
         {
             this.bossView = bossView;
@@ -18,6 +19,11 @@ namespace RoboBrawl.Enemy
 
             bossView.SetController( this );
             bossView.gameObject.SetActive( true );
+        }
+
+        public float GetBulletSpeed( )
+        {
+            return bossModel.BulletSpeed;
         }
     }
 }

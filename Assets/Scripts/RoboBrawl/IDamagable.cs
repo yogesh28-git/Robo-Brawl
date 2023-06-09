@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace RoboBrawl
+﻿namespace RoboBrawl
 {
-    public class IDamagable : MonoBehaviour
+    public interface IDamagable
     {
-        
+        public float GetBulletSpeed();
     }
 }

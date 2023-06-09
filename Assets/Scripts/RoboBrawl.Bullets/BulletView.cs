@@ -17,6 +17,7 @@ namespace RoboBrawl.Bullets
         public void SetShooterObject(IDamagable shooterObject )
         {
             this.shooterObject = shooterObject;
+            this.bulletSpeed = shooterObject.GetBulletSpeed();
         }
 
         private void OnEnable( )

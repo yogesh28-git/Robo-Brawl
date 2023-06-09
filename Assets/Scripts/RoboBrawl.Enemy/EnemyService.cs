@@ -6,9 +6,12 @@ namespace RoboBrawl.Enemy
 {
     public class EnemyService : GenericObjectPool<EnemyService, SmallEnemyView>
     {
+        public Transform[] PatrolPoints { get { return patrolPoints; } set { } }
+
         [Header( "Boss Enemy" )]
         [SerializeField] private BossEnemyView bossPrefab;
         [SerializeField] private Transform bossSpawnTransform;
+        [SerializeField] private Transform[] patrolPoints;
 
         [Header( "Small Robot Enemy" )]
         [SerializeField] private SmallEnemyView smallEnemyPrefab;

@@ -44,5 +44,10 @@ namespace RoboBrawl.Player
                 playerAnimator.SetBool( "Move", false );
             }
         }
+
+        public float GetBulletSpeed( )
+        {
+            return PlayerModel.BulletSpeed;
+        }
     }
 }

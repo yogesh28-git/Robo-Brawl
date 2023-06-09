@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RoboBrawl.Bullets;
+using RoboBrawl.Player;
 
 namespace RoboBrawl.Enemy
 {
@@ -17,10 +18,11 @@ namespace RoboBrawl.Enemy
         private EnemyChaseState chaseState;
         private EnemyAttackState attackState;
         private Coroutine shootCoroutine;
-
+        private Transform playerTransform;
 
         private void Start( )
         {
+            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
             patrolState = new EnemyPatrolState( agent, this );
             chaseState = new EnemyChaseState( agent , this );
             attackState = new EnemyAttackState( this , transform);
@@ -37,6 +39,10 @@ namespace RoboBrawl.Enemy
         {
             this.bossController = bossController;
         }
+        public Transform GetPlayerTransform( )
+        {
+            return playerTransform;
+        }
 
         public void StartShooting( )
         {
@@ -49,6 +55,7 @@ namespace RoboBrawl.Enemy
 
         private IEnumerator ShootingCoroutine( )
         {
+            yield return new WaitForSeconds( 2f );
             while ( true )
             { 
                 BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );

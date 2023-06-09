@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RoboBrawl.Enemy
 {
-    public class SmallEnemyController
+    public class SmallEnemyController: IDamagable
     {
         public SmallEnemyModel SmallEnemyModel { get { return smallEnemyModel; } set { } }
         public SmallEnemyView SmallEnemyView { get { return smallEnemyView; } set { } }
@@ -17,6 +17,11 @@ namespace RoboBrawl.Enemy
             this.smallEnemyView = smallEnemyView;
 
             smallEnemyView.SetController( this );
+        }
+
+        public float GetBulletSpeed( )
+        {
+            return SmallEnemyModel.BulletSpeed;
         }
     }
 }

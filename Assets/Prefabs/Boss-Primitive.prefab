@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1687410104}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5798654999963174183}
   - component: {fileID: 2099515656}
   - component: {fileID: 8717939895727836412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss-Primitive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.49999997
-  m_Speed: 1
+  m_Speed: 0.8
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 90
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 8012054524248614690}
   - component: {fileID: 8012054524248614693}
   - component: {fileID: 8012054524248614692}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

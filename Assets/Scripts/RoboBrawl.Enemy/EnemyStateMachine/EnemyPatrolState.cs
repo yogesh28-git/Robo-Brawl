@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using RoboBrawl.Player;
 
 namespace RoboBrawl.Enemy
 {
@@ -22,7 +20,7 @@ namespace RoboBrawl.Enemy
 
             this.patrolPointsList = EnemyService.Instance.PatrolPoints;
             enemyTransformRef = navAgent.gameObject.transform;
-            playerTransformRef = PlayerService.Instance.PlayerController.PlayerView.transform;
+            playerTransformRef = enemyView.GetPlayerTransform( );
         }
         public void OnStateEnter( )
         {

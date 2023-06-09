@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using RoboBrawl.Player;
 
 namespace RoboBrawl.Enemy
 {
@@ -11,14 +10,13 @@ namespace RoboBrawl.Enemy
         private Transform playerTransformRef;
         private Transform enemyTransformRef;
         
-
         public EnemyChaseState(NavMeshAgent agent, IEnemyStateUser enemyView)
         {
             this.navAgent = agent;
             this.enemyView = enemyView;
             navAgent.enabled = false;
 
-            playerTransformRef = PlayerService.Instance.PlayerController.PlayerView.transform;
+            playerTransformRef = enemyView.GetPlayerTransform( );
             enemyTransformRef = navAgent.gameObject.transform;
         }
         public void OnStateEnter( )

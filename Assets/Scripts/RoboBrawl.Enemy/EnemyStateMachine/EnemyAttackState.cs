@@ -1,5 +1,4 @@
 using UnityEngine;
-using RoboBrawl.Player;
 
 namespace RoboBrawl.Enemy
 {
@@ -13,7 +12,7 @@ namespace RoboBrawl.Enemy
             this.enemyView = enemyView;
             this.enemyTransformRef = enemyTransformRef;
 
-            playerTransformRef = PlayerService.Instance.PlayerController.PlayerView.transform;
+            playerTransformRef = enemyView.GetPlayerTransform( );
         }
         public void OnStateEnter( )
         {

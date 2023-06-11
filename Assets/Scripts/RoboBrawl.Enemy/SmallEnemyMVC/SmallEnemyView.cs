@@ -7,7 +7,7 @@ using RoboBrawl.Player;
 
 namespace RoboBrawl.Enemy
 {
-    public class SmallEnemyView : MonoBehaviour, IEnemyStateUser
+    public class SmallEnemyView : MonoBehaviour, IEnemyStateUser, ICharacterView
     {
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private Transform bulletSpawnPos;
@@ -81,6 +81,11 @@ namespace RoboBrawl.Enemy
         public Transform GetPlayerTransform( )
         {
             return playerTransform;
+        }
+
+        public IDamagable GetController( )
+        {
+            return smallEnemyController;
         }
     }
 }

@@ -49,5 +49,30 @@ namespace RoboBrawl.Player
         {
             return PlayerModel.BulletSpeed;
         }
+
+        public void TakeDamage( int dmg )
+        {
+            int newHealth = PlayerModel.GetHealth( ) - dmg;
+            PlayerModel.SetHealth( newHealth );
+            if ( newHealth < 0 )
+            {
+                DestroyPlayer( );
+            }
+        }
+
+        public int GiveDamage( )
+        {
+            return PlayerModel.Damage;
+        }
+
+        private void DestroyPlayer( )
+        {
+            PlayerModel.ResetHealth( );
+        }
+
+        public GameObject GetGameObject( )
+        {
+            return this.PlayerView.gameObject;
+        }
     }
 }

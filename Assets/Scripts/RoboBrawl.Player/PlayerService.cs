@@ -24,7 +24,6 @@ namespace RoboBrawl.Player
             playerView = GameObject.Instantiate<PlayerView>( playerPrefab );
             playerView.gameObject.SetActive( false );
             int randomPosIndex = Random.Range( 0, spawnPos.Count);
-            Debug.Log( randomPosIndex );
             playerView.transform.position = spawnPos[randomPosIndex].position;
             playerModel = new PlayerModel( );
             playerController = new PlayerController(playerView, playerModel);

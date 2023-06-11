@@ -7,7 +7,7 @@ using RoboBrawl.Player;
 
 namespace RoboBrawl.Enemy
 {
-    public class BossEnemyView : MonoBehaviour, IEnemyStateUser
+    public class BossEnemyView : MonoBehaviour, IEnemyStateUser, ICharacterView
     {
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private Transform bulletSpawnPos;
@@ -77,7 +77,11 @@ namespace RoboBrawl.Enemy
                     break;
             }
             currentState.OnStateEnter( );
-            Debug.Log( "NewState: " + currentState.GetState( ) );
+        }
+
+        public IDamagable GetController( )
+        {
+            return bossController;
         }
     }
 }

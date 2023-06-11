@@ -25,5 +25,30 @@ namespace RoboBrawl.Enemy
         {
             return bossModel.BulletSpeed;
         }
+
+        public void TakeDamage( int dmg )
+        {
+            int newHealth = bossModel.GetHealth( ) - dmg;
+            bossModel.SetHealth( newHealth );
+            if ( newHealth < 0 )
+            {
+                DestroyBoss( );
+            }
+        }
+
+        public int GiveDamage( )
+        {
+            return bossModel.Damage;
+        }
+
+        private void DestroyBoss( )
+        {
+            //Game Win Condition
+        }
+
+        public GameObject GetGameObject( )
+        {
+            return this.bossView.gameObject;
+        }
     }
 }

@@ -6,7 +6,7 @@ using RoboBrawl.UI;
 
 namespace RoboBrawl.Player
 {
-    public class PlayerView : MonoBehaviour
+    public class PlayerView : MonoBehaviour, ICharacterView
     {
         public Rigidbody PlayerRigidBody { get { return playerRigidBody; } private set { } }
         public Animator PlayerAnimator { get { return playerAnimator; } set { } }
@@ -69,6 +69,11 @@ namespace RoboBrawl.Player
                 yield return new WaitForSeconds( 0.2f );
                 ammoBlocks += 0.1f;
             }
+        }
+
+        public IDamagable GetController( )
+        {
+            return playerController;
         }
     }
 }

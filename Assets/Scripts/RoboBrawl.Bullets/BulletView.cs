@@ -12,12 +12,12 @@ namespace RoboBrawl.Bullets
         private float bulletSpeed = 10f;
         private Vector3 endingPoint;
         private Vector3 offset;
-        private IDamagable shooterObject;
+        private IDamagable shooter;
         
-        public void SetShooterObject(IDamagable shooterObject )
+        public void SetShooterObject(IDamagable shooter )
         {
-            this.shooterObject = shooterObject;
-            this.bulletSpeed = shooterObject.GetBulletSpeed();
+            this.shooter = shooter;
+            this.bulletSpeed = shooter.GetBulletSpeed();
         }
 
         private void OnEnable( )
@@ -37,6 +37,25 @@ namespace RoboBrawl.Bullets
         }
         private void DestroyBullet( )
         {
+            BulletService.Instance.ReturnToPool( this );
+        }
+
+        private void OnTriggerEnter( Collider collider )
+        {
+            if(collider.gameObject == shooter.GetGameObject( ) )
+            {
+                return;
+            }
+
+            ICharacterView collidedCharacter = collider.GetComponent<ICharacterView>( );
+
+            if(collidedCharacter != null )
+            {
+                Debug.Log( "Collided" );
+                IDamagable collidedController = collidedCharacter.GetController( );
+                collidedController.TakeDamage( shooter.GiveDamage( ) );
+            }
+
             BulletService.Instance.ReturnToPool( this );
         }
     }

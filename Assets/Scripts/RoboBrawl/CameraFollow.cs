@@ -9,22 +9,24 @@ namespace RoboBrawl
     {
         [SerializeField] private Camera mainCamera;
         [SerializeField] private LayerMask boundaryLayer;
-        [SerializeField] private GameObject leftWall;
-        [SerializeField] private GameObject rightWall;
-        [SerializeField] private GameObject topWall;
-        [SerializeField] private GameObject bottomWall;
+        [SerializeField] private Transform leftWall;
+        [SerializeField] private Transform rightWall;
+        [SerializeField] private Transform topWall;
+        [SerializeField] private Transform bottomWall;
 
         private RaycastHit lowerLeftHit;
         private RaycastHit upperRightHit;
         private Transform playerTransform;
         Vector3 lowerLeft = new Vector3( 0, 0, 0 );
         Vector3 upperRight = new Vector3( Screen.width - 1, Screen.height - 1, 0 );
-        Vector3 lowerLeftBound = new Vector3( -21, 0, -21 );
-        Vector3 upperRightBound = new Vector3( 21, 0, 21 );
+        Vector3 lowerLeftBound;
+        Vector3 upperRightBound;
 
         private void Start( )
         {
             playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
+            lowerLeftBound = new Vector3( leftWall.position.x, 0, bottomWall.position.z );
+            upperRightBound = new Vector3( rightWall.position.x, 0, topWall.position.z );
         }
         private void FixedUpdate( )
         {

@@ -83,5 +83,10 @@ namespace RoboBrawl.Enemy
         {
             return bossController;
         }
+
+        public int GetHealth( )
+        {
+            return bossController.BossModel.GetHealth( );
+        }
     }
 }

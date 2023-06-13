@@ -24,6 +24,7 @@ namespace RoboBrawl.Player
         [SerializeField] private Rigidbody playerRigidBody;
         [SerializeField] private Animator playerAnimator;
         [SerializeField] private Transform bulletSpawnPos;
+        [SerializeField] private AmmoBar ammoBarScript;
         public void SetController(PlayerController playerController )
         {
             this.playerController = playerController;
@@ -49,6 +50,7 @@ namespace RoboBrawl.Player
                 if(ammoRefillCoroutine != null)
                     StopCoroutine( ammoRefillCoroutine );
                 ammoBlocks = Mathf.Floor(ammoBlocks-1);
+                ammoBarScript.UpdateAmmoBar( ammoBlocks );
                 ammoRefillCoroutine = StartCoroutine( AmmoBlockRefill( ) );
             }
         }
@@ -68,12 +70,18 @@ namespace RoboBrawl.Player
             {
                 yield return new WaitForSeconds( 0.2f );
                 ammoBlocks += 0.1f;
+                ammoBarScript.UpdateAmmoBar( ammoBlocks );
             }
         }
 
         public IDamagable GetController( )
         {
             return playerController;
+        }
+
+        public int GetHealth( )
+        {
+            return playerController.PlayerModel.GetHealth( );
         }
     }
 }

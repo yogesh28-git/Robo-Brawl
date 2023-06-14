@@ -344,7 +344,6 @@ GameObject:
   - component: {fileID: 510970884}
   - component: {fileID: 510970887}
   - component: {fileID: 510970886}
-  - component: {fileID: 510970885}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -425,19 +424,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &510970885
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510970883}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &516430969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1490,7 @@ GameObject:
   - component: {fileID: 5798654999963174183}
   - component: {fileID: 2099515656}
   - component: {fileID: 8717939895727836412}
+  - component: {fileID: 1553037835}
   m_Layer: 6
   m_Name: Boss-Primitive
   m_TagString: Untagged
@@ -1581,3 +1568,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5798654999963174183}
   bulletSpawnPos: {fileID: 1687410104}
+--- !u!135 &1553037835
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8012054523277090853}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4586761
+  m_Center: {x: -0.010111699, y: 0.79720694, z: 0}

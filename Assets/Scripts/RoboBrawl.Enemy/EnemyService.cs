@@ -15,7 +15,7 @@ namespace RoboBrawl.Enemy
 
         [Header( "Small Robot Enemy" )]
         [SerializeField] private SmallEnemyView smallEnemyPrefab;
-        [SerializeField] private List<Transform> smallEnemySpawnTransformList = new List<Transform>();
+        [SerializeField] private List<Transform> enemySpawnTransformList = new List<Transform>();
 
         [SerializeField]
         private List<Transform> smallEnemyDuplicateList = new List<Transform>( );
@@ -27,14 +27,15 @@ namespace RoboBrawl.Enemy
         {
             base.Awake( );
             SpawnBoss( );
-            CreateSmallEnemyMVC( 3 );
-
+            CreateSmallEnemyMVC( 4 );
             SpawnSmallEnemies( );
         }
 
         private void SpawnBoss( )
         {
-            BossEnemyView bossEnemyView = GameObject.Instantiate<BossEnemyView>( bossPrefab, bossSpawnTransform.position, Quaternion.identity );
+            int randIndex = Random.Range( 0, enemySpawnTransformList.Count );
+            Transform enemyTransform = enemySpawnTransformList[randIndex];
+            BossEnemyView bossEnemyView = GameObject.Instantiate<BossEnemyView>( bossPrefab, enemyTransform.position, Quaternion.identity );
             bossEnemyView.gameObject.SetActive( false );
             BossEnemyModel bossEnemyModel = new BossEnemyModel( );
             bossEnemyController = new BossEnemyController( bossEnemyView, bossEnemyModel );
@@ -43,6 +44,7 @@ namespace RoboBrawl.Enemy
         private void CreateSmallEnemyMVC(int count)
         {
             this.MaxSmallEnemyCount = count;
+            this.currentSmallEnemyCount = count;
 
             for(int i=0; i<count; i++ )
             {
@@ -58,18 +60,24 @@ namespace RoboBrawl.Enemy
         {
             for (int i=0; i<MaxSmallEnemyCount; i++ )
             {
-                int randIndex = Random.Range( 0, smallEnemySpawnTransformList.Count );
-                Transform smallEnemyTransform = smallEnemySpawnTransformList[randIndex];
-                smallEnemyDuplicateList.Add( smallEnemySpawnTransformList[randIndex] );
-                smallEnemySpawnTransformList.RemoveAt(randIndex);
+                int randIndex = Random.Range( 0, enemySpawnTransformList.Count );
+                Transform smallEnemyTransform = enemySpawnTransformList[randIndex];
+                smallEnemyDuplicateList.Add( enemySpawnTransformList[randIndex] );
+                enemySpawnTransformList.RemoveAt(randIndex);
 
                 SmallEnemyView smallEnemyView = GetFromPool( smallEnemyTransform );
             }
             foreach(var element in smallEnemyDuplicateList )
             {
-                smallEnemySpawnTransformList.Add( element );
+                enemySpawnTransformList.Add( element );
             }
             smallEnemyDuplicateList.Clear( );
+        }
+
+        private void KillSmallEnemy( SmallEnemyView smallEnemy)
+        {
+            currentSmallEnemyCount--;
+            ReturnToPool( smallEnemy );
         }
     }
 }

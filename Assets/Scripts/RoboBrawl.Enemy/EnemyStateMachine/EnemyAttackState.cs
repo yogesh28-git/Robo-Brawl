@@ -27,7 +27,7 @@ namespace RoboBrawl.Enemy
         public void OnStateUpdate( )
         {
             Vector3 playerPos = playerTransformRef.position;
-            if((playerTransformRef.position - enemyTransformRef.position).sqrMagnitude > 25 )
+            if((playerTransformRef.position - enemyTransformRef.position).sqrMagnitude > 16 )
             {
                 enemyView.ChangeStateTo( EnemyStateEnum.CHASE );
             }

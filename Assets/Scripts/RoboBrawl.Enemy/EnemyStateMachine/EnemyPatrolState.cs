@@ -38,7 +38,7 @@ namespace RoboBrawl.Enemy
                 Vector3 targetPos = patrolPointsList[randIndex].position;
                 navAgent.SetDestination( targetPos );
             }
-            if ( ( playerTransformRef.position - enemyTransformRef.position ).sqrMagnitude <= 144 )
+            if ( ( playerTransformRef.position - enemyTransformRef.position ).sqrMagnitude <= 81 )
             {
                 enemyView.ChangeStateTo( EnemyStateEnum.CHASE );
             }

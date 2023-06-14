@@ -27,11 +27,11 @@ namespace RoboBrawl.Enemy
         {
             navAgent.SetDestination( playerTransformRef.position );
 
-            if ( ( playerTransformRef.position - enemyTransformRef.position ).sqrMagnitude <= 25 )
+            if ( ( playerTransformRef.position - enemyTransformRef.position ).sqrMagnitude <= 16 )
             {
                 enemyView.ChangeStateTo( EnemyStateEnum.ATTACK );
             }
-            if ( ( playerTransformRef.position - enemyTransformRef.position ).sqrMagnitude > 144 )
+            if ( ( playerTransformRef.position - enemyTransformRef.position ).sqrMagnitude > 81 )
             {
                 enemyView.ChangeStateTo( EnemyStateEnum.PATROL );
             }

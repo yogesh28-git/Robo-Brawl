@@ -25,8 +25,8 @@ namespace RoboBrawl
         private void Start( )
         {
             playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
-            lowerLeftBound = new Vector3( leftWall.position.x, 0, bottomWall.position.z );
-            upperRightBound = new Vector3( rightWall.position.x, 0, topWall.position.z );
+            lowerLeftBound = new Vector3( leftWall.position.x-0.4f, 0, bottomWall.position.z- 0.4f );
+            upperRightBound = new Vector3( rightWall.position.x+ 0.4f, 0, topWall.position.z+ 0.4f );
         }
         private void FixedUpdate( )
         {

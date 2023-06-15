@@ -59,11 +59,9 @@ namespace RoboBrawl
             if ( isRightCrossed )
             {
                 Vector3 hitPoint = upperRightHit.point;
-                Debug.Log( hitPoint );
                 hitPoint.y = 0;
                 if ( hitPoint.z >= upperRightBound.z )
                 {
-                    Debug.Log( "up" );
                     Vector3 temp = this.transform.position;
                     temp.z = previousPos.z;
                     this.transform.position = temp;

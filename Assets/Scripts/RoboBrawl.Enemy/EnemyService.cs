@@ -21,14 +21,22 @@ namespace RoboBrawl.Enemy
         private List<Transform> smallEnemyDuplicateList = new List<Transform>( );
         private BossEnemyController bossEnemyController;
         private int currentSmallEnemyCount = 0;
-        private int MaxSmallEnemyCount;
+        private int MaxSmallEnemyCount = 4;
 
         private void Awake( )
         {
             base.Awake( );
-            SpawnBoss( );
-            CreateSmallEnemyMVC( 4 );
-            SpawnSmallEnemies( );
+            GameManagerService.Instance.OnGameStart.AddListener( SpawnBoss );
+        }
+
+        public override SmallEnemyView CreateNewItem( )
+        {
+            SmallEnemyView smallEnemyView = GameObject.Instantiate<SmallEnemyView>( smallEnemyPrefab );
+            smallEnemyView.gameObject.SetActive( false );
+            SmallEnemyModel smallEnemyModel = new SmallEnemyModel( );
+            SmallEnemyController smallEnemyController = new SmallEnemyController( smallEnemyView, smallEnemyModel );
+
+            return smallEnemyView;
         }
 
         private void SpawnBoss( )
@@ -41,12 +49,11 @@ namespace RoboBrawl.Enemy
             bossEnemyController = new BossEnemyController( bossEnemyView, bossEnemyModel );
         }
 
-        private void CreateSmallEnemyMVC(int count)
+/*        private void CreateSmallEnemyMVC()
         {
-            this.MaxSmallEnemyCount = count;
-            this.currentSmallEnemyCount = count;
+            this.currentSmallEnemyCount = MaxSmallEnemyCount;
 
-            for(int i=0; i<count; i++ )
+            for(int i=0; i< MaxSmallEnemyCount; i++ )
             {
                 SmallEnemyView smallEnemyView = GameObject.Instantiate<SmallEnemyView>( smallEnemyPrefab );
                 smallEnemyView.gameObject.SetActive( false );
@@ -54,9 +61,9 @@ namespace RoboBrawl.Enemy
                 SmallEnemyController smallEnemyController = new SmallEnemyController( smallEnemyView, smallEnemyModel );
                 ReturnToPool( smallEnemyView );
             }
-        }
+        }*/
 
-        private void SpawnSmallEnemies()
+        public void SpawnSmallEnemies()
         {
             for (int i=0; i<MaxSmallEnemyCount; i++ )
             {

@@ -54,7 +54,7 @@ namespace RoboBrawl.Player
         {
             int newHealth = PlayerModel.GetHealth( ) - dmg;
             PlayerModel.SetHealth( newHealth );
-            if ( newHealth < 0 )
+            if ( newHealth <= 0 )
             {
                 DestroyPlayer( );
             }
@@ -68,6 +68,7 @@ namespace RoboBrawl.Player
         private void DestroyPlayer( )
         {
             PlayerModel.ResetHealth( );
+            GameManagerService.Instance.OnGameOver.InvokeEvent( );
         }
 
         public GameObject GetGameObject( )

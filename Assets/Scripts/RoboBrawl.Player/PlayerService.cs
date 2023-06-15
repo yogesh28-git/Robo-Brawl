@@ -1,30 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace RoboBrawl.Player
 {
     public class PlayerService : MonoSingletonGeneric<PlayerService>
     {
         public PlayerController PlayerController { get { return playerController; } set { } }
-        [SerializeField] private List<Transform> spawnPos = new List<Transform>();
+        [SerializeField] private Transform playerSpawnPos;
         [SerializeField] private PlayerView playerPrefab;
         private PlayerView playerView;
         private PlayerModel playerModel;
         private PlayerController playerController;
 
-
         protected override void Awake( )
         {
             base.Awake( );
-            SpawnPlayer( );
+            GameManagerService.Instance.OnGameStart.AddListener( SpawnPlayer );
         }
         private void SpawnPlayer( )
         {
             playerView = GameObject.Instantiate<PlayerView>( playerPrefab );
             playerView.gameObject.SetActive( false );
-            int randomPosIndex = Random.Range( 0, spawnPos.Count);
-            playerView.transform.position = spawnPos[randomPosIndex].position;
+            playerView.transform.position = playerSpawnPos.position;
             playerModel = new PlayerModel( );
             playerController = new PlayerController(playerView, playerModel);
         }

@@ -43,6 +43,9 @@ namespace RoboBrawl.Enemy
 
         private void DestroyBoss( )
         {
+            BossView.StopSpawning( );
+            BossModel.ResetHealth( );
+            GameManagerService.Instance.OnGameOver.InvokeEvent( );
             //Game Win Condition
         }
 

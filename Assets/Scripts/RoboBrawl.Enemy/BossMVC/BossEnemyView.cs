@@ -18,6 +18,7 @@ namespace RoboBrawl.Enemy
         private EnemyChaseState chaseState;
         private EnemyAttackState attackState;
         private Coroutine shootCoroutine;
+        private Coroutine spawnCoroutine;
         private Transform playerTransform;
 
         private void Start( )
@@ -29,6 +30,7 @@ namespace RoboBrawl.Enemy
 
             currentState = patrolState;
             currentState.OnStateEnter();
+            spawnCoroutine = StartCoroutine( SmallEnemySpawner() );
         }
         private void Update( )
         {
@@ -52,7 +54,6 @@ namespace RoboBrawl.Enemy
         {
             StopCoroutine( shootCoroutine );
         }
-
         private IEnumerator ShootingCoroutine( )
         {
             yield return new WaitForSeconds( 2f );
@@ -61,6 +62,20 @@ namespace RoboBrawl.Enemy
                 BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );
                 bullet.SetShooterObject( bossController );
                 yield return new WaitForSeconds( 2f );
+            }
+        }
+
+        public void StopSpawning( )
+        {
+            StopCoroutine( spawnCoroutine );
+        }
+
+        private IEnumerator SmallEnemySpawner( )
+        {
+            while ( true )
+            {
+                EnemyService.Instance.SpawnSmallEnemies( );
+                yield return new WaitForSeconds( 30f );
             }
         }
 

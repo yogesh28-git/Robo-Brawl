@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RoboBrawl.Bullets;
-using RoboBrawl.UI;
 
 namespace RoboBrawl.Player
 {
@@ -32,7 +31,6 @@ namespace RoboBrawl.Player
         private void Update( )
         {
             HandleInput( );
-            UIService.Instance.ammo.text = "Ammo: " + ammoBlocks;
         }
         private void FixedUpdate( )
         {

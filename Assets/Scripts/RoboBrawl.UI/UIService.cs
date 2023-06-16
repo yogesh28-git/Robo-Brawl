@@ -23,7 +23,7 @@ namespace RoboBrawl.UI
         [SerializeField] private Button menu;
 
 
-        public void OnEnable( )
+        public void Awake( )
         {
             GameManagerService.Instance.OnGameStart.AddListener( ShowStartingMessage );
         }

@@ -10,7 +10,7 @@ namespace RoboBrawl
 
         protected virtual void Awake( )
         {
-            if(instance == null )
+            if (instance == null )
             {
                 instance = this as T;
                 DontDestroyOnLoad( this.gameObject );

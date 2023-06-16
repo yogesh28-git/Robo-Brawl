@@ -9,17 +9,23 @@ namespace RoboBrawl
 {
     public class GameManagerService: MonoSingletonGeneric<GameManagerService>
     {
-        public EventController OnGameOver = new EventController( );
-        public EventController OnGameStart = new EventController( );
+        public EventController OnGameOver;
+        public EventController OnGameStart;
         private int gameTimeSeconds = 150;
         private int timeLeftSeconds;
         private Coroutine countDownCoroutine;
 
-        private void Start( )
+        protected override void Awake( )
         {
+            base.Awake( );
+            OnGameOver = new EventController( );
+            OnGameStart = new EventController( );
             OnGameStart.AddListener( StartTimer );
             OnGameOver.AddListener( StopTimer );
+        }
 
+        private void Start( )
+        {
             OnGameStart.InvokeEvent( );
         }
 

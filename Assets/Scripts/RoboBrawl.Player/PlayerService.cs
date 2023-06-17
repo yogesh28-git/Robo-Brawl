@@ -14,9 +14,12 @@ namespace RoboBrawl.Player
         private PlayerModel playerModel;
         private PlayerController playerController;
 
+        public EventController OnPlayerSpawn;
+
         protected override void Awake( )
         {
             base.Awake( );
+            OnPlayerSpawn = new EventController( );
             GameManagerService.Instance.OnGameStart.AddListener( SpawnPlayer );
         }
         private void SpawnPlayer( )
@@ -26,6 +29,8 @@ namespace RoboBrawl.Player
             playerView.transform.position = playerSpawnPos.position;
             playerModel = new PlayerModel( );
             playerController = new PlayerController(playerView, playerModel);
+
+            OnPlayerSpawn.InvokeEvent( );
         }
     }
 }

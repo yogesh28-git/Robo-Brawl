@@ -23,14 +23,9 @@ namespace RoboBrawl
             OnGameStart.AddListener( StartTimer );
             OnGameOver.AddListener( StopTimer );
         }
-
-        private void Start( )
-        {
-            OnGameStart.InvokeEvent( );
-        }
-
         private void StartTimer( )
         {
+            Debug.Log( "Start Timer" );
             countDownCoroutine = StartCoroutine( GameTimer() );
         }
         private void StopTimer( )
@@ -53,7 +48,6 @@ namespace RoboBrawl
         public void LoadGameScene( )
         {
             SceneManager.LoadScene( 1 );
-            OnGameStart.InvokeEvent( );
         }
     }
 }

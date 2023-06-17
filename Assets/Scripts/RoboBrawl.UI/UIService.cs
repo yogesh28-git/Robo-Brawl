@@ -25,6 +25,7 @@ namespace RoboBrawl.UI
 
         public void Awake( )
         {
+            base.Awake( );
             GameManagerService.Instance.OnGameStart.AddListener( ShowStartingMessage );
         }
 

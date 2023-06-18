@@ -18,7 +18,7 @@ namespace RoboBrawl.Player
             this.PlayerModel = playerModel;
 
             PlayerView.SetController( this );
-            playerView.gameObject.SetActive( true );
+            PlayerView.gameObject.SetActive( true );
             SetInitialVariables( );
         }
 
@@ -67,13 +67,18 @@ namespace RoboBrawl.Player
 
         private void DestroyPlayer( )
         {
-            PlayerModel.ResetHealth( );
+            PlayerView.gameObject.SetActive( false );
             GameManagerService.Instance.OnGameOver.InvokeEvent( );
         }
 
         public GameObject GetGameObject( )
         {
             return this.PlayerView.gameObject;
+        }
+
+        public CharacterType GetCharacterType( )
+        {
+            return CharacterType.PLAYER;
         }
     }
 }

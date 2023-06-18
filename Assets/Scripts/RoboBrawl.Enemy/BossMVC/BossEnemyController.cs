@@ -19,6 +19,7 @@ namespace RoboBrawl.Enemy
 
             bossView.SetController( this );
             bossView.gameObject.SetActive( true );
+            bossView.gameObject.SetActive( true );
         }
 
         public float GetBulletSpeed( )
@@ -44,14 +45,18 @@ namespace RoboBrawl.Enemy
         private void DestroyBoss( )
         {
             BossView.StopSpawning( );
-            BossModel.ResetHealth( );
+            bossView.gameObject.SetActive( false );
             GameManagerService.Instance.OnGameOver.InvokeEvent( );
-            //Game Win Condition
         }
 
         public GameObject GetGameObject( )
         {
             return this.bossView.gameObject;
+        }
+
+        public CharacterType GetCharacterType( )
+        {
+            return CharacterType.ENEMY;
         }
     }
 }

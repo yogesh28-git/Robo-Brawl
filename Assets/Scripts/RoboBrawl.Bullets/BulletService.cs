@@ -9,7 +9,7 @@ namespace RoboBrawl.Bullets
         [SerializeField] private BulletView bulletPrefab;
         public override BulletView CreateNewItem( )
         {
-            BulletView item = GameObject.Instantiate<BulletView>( bulletPrefab );
+            BulletView item = GameObject.Instantiate<BulletView>( bulletPrefab, this.transform );
             return item;
         }
     }

@@ -7,7 +7,6 @@ namespace RoboBrawl
 {
     public class HealthBar : MonoBehaviour
     {
-        private Camera cam;
         [SerializeField] private Gradient gradient;
         [SerializeField] private Slider healthBar;
         [SerializeField] private Transform characterTransform;
@@ -20,7 +19,6 @@ namespace RoboBrawl
         private void Start( )
         {
             this.character = characterTransform.gameObject.GetComponent<ICharacterView>( );
-            this.cam = Camera.main;
 
             maxHealth = character.GetHealth( );
 
@@ -30,7 +28,7 @@ namespace RoboBrawl
         }
         private void LateUpdate( )
         {
-            transform.LookAt( transform.position + cam.transform.forward );
+            transform.LookAt( transform.position + Camera.main.transform.forward );
 
             currHealth = character.GetHealth( );
 

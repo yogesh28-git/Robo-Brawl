@@ -24,16 +24,11 @@ namespace RoboBrawl
 
         private void Start( )
         {
-            PlayerService.Instance.OnPlayerSpawn.AddListener( AssignPlayerTransform );
+            playerTransform = PlayerService.Instance.PlayerView.transform;
             lowerLeftBound = new Vector3( leftWall.position.x-0.4f, 0, bottomWall.position.z- 0.4f );
             upperRightBound = new Vector3( rightWall.position.x+ 0.4f, 0, topWall.position.z+ 0.4f );
+        }
 
-            GameManagerService.Instance.OnGameStart.InvokeEvent( );
-        }
-        private void AssignPlayerTransform( )
-        {
-            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
-        }
         private void FixedUpdate( )
         {
             if(playerTransform != null )

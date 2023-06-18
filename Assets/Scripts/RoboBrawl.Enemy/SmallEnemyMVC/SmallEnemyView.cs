@@ -20,18 +20,25 @@ namespace RoboBrawl.Enemy
         private Coroutine shootCoroutine;
         private Transform playerTransform;
 
-        private void Start( )
+        private void Awake( )
         {
-            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
             chaseState = new EnemyChaseState( agent, this );
             attackState = new EnemyAttackState( this, transform );
+        }
+        private void Start( )
+        {
+            GameManagerService.Instance.OnGameOver.AddListener( smallEnemyController.DestroySmallEnemy );
+        }
 
+        private void OnEnable( )
+        {
+            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
             currentState = chaseState;
             currentState.OnStateEnter( );
         }
         private void Update( )
         {
-            currentState.OnStateUpdate( );
+            currentState?.OnStateUpdate( );
         }
         public void SetController( SmallEnemyController smallEnemyController )
         {
@@ -91,6 +98,11 @@ namespace RoboBrawl.Enemy
         public int GetHealth( )
         {
             return smallEnemyController.SmallEnemyModel.GetHealth( );
+        }
+
+        private void OnDestroy( )
+        {
+            smallEnemyController.DestroySmallEnemy( );
         }
     }
 }

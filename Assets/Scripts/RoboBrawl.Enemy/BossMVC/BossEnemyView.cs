@@ -75,7 +75,7 @@ namespace RoboBrawl.Enemy
             while ( true )
             {
                 EnemyService.Instance.SpawnSmallEnemies( );
-                yield return new WaitForSeconds( 30f );
+                yield return new WaitForSeconds( 45f );
             }
         }
 

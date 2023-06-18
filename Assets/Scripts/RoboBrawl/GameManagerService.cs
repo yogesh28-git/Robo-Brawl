@@ -15,13 +15,15 @@ namespace RoboBrawl
         private int timeLeftSeconds;
         private Coroutine countDownCoroutine;
 
-        protected override void Awake( )
+        private void Start( )
         {
-            base.Awake( );
             OnGameOver = new EventController( );
             OnGameStart = new EventController( );
             OnGameStart.AddListener( StartTimer );
             OnGameOver.AddListener( StopTimer );
+            OnGameOver.AddListener( LoadLobbyScene );
+
+            SceneManager.sceneLoaded += OnGameSceneLoad;
         }
         private void StartTimer( )
         {
@@ -48,6 +50,20 @@ namespace RoboBrawl
         public void LoadGameScene( )
         {
             SceneManager.LoadScene( 1 );
+        }
+        public void LoadLobbyScene( )
+        {
+            SceneManager.LoadScene( 0 );
+        }
+        
+        public void OnGameSceneLoad( Scene scene, LoadSceneMode mode )
+        {
+            Debug.Log( "Scene Loaded: " + scene.name);
+            if(scene.buildIndex == 1 )
+            {
+                OnGameStart.InvokeEvent( );
+                Debug.Log( "Game Started" );
+            }
         }
     }
 }

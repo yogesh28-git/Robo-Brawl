@@ -11,11 +11,10 @@ namespace RoboBrawl.Enemy
         {
             this.enemyView = enemyView;
             this.enemyTransformRef = enemyTransformRef;
-
-            playerTransformRef = enemyView.GetPlayerTransform( );
         }
         public void OnStateEnter( )
         {
+            playerTransformRef = enemyView.GetPlayerTransform( );
             enemyView.StartShooting( );
         }
 

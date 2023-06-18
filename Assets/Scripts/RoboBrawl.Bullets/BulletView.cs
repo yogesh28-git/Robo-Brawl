@@ -20,6 +20,11 @@ namespace RoboBrawl.Bullets
             this.bulletSpeed = shooter.GetBulletSpeed();
         }
 
+        private void Start( )
+        {
+            GameManagerService.Instance.OnGameOver.AddListener( DestroyBullet );
+        }
+
         private void OnEnable( )
         {
             startingPoint = transform.position;
@@ -51,9 +56,11 @@ namespace RoboBrawl.Bullets
 
             if(collidedCharacter != null )
             {
-                Debug.Log( "Collided" );
                 IDamagable collidedController = collidedCharacter.GetController( );
-                collidedController.TakeDamage( shooter.GiveDamage( ) );
+                if( collidedController.GetCharacterType() != shooter.GetCharacterType( ) )
+                {
+                    collidedController.TakeDamage( shooter.GiveDamage( ) );
+                }
             }
 
             BulletService.Instance.ReturnToPool( this );

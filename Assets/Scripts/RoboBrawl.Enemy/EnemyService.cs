@@ -19,50 +19,35 @@ namespace RoboBrawl.Enemy
 
         [SerializeField]
         private List<Transform> smallEnemyDuplicateList = new List<Transform>( );
-        private BossEnemyController bossEnemyController;
-        private int currentSmallEnemyCount = 0;
         private int MaxSmallEnemyCount = 4;
 
-        private void Awake( )
+        private BossEnemyController bossController;
+        private BossEnemyModel bossModel;
+        private BossEnemyView bossView;
+
+        private void OnEnable( )
         {
-            base.Awake( );
             GameManagerService.Instance.OnGameStart.AddListener( SpawnBoss );
         }
 
         public override SmallEnemyView CreateNewItem( )
         {
-            SmallEnemyView smallEnemyView = GameObject.Instantiate<SmallEnemyView>( smallEnemyPrefab );
+            SmallEnemyView smallEnemyView = GameObject.Instantiate<SmallEnemyView>( smallEnemyPrefab, this.transform);
             smallEnemyView.gameObject.SetActive( false );
             SmallEnemyModel smallEnemyModel = new SmallEnemyModel( );
             SmallEnemyController smallEnemyController = new SmallEnemyController( smallEnemyView, smallEnemyModel );
 
             return smallEnemyView;
         }
-
         private void SpawnBoss( )
         {
             int randIndex = Random.Range( 0, enemySpawnTransformList.Count );
             Transform enemyTransform = enemySpawnTransformList[randIndex];
-            BossEnemyView bossEnemyView = GameObject.Instantiate<BossEnemyView>( bossPrefab, enemyTransform.position, Quaternion.identity );
-            bossEnemyView.gameObject.SetActive( false );
-            BossEnemyModel bossEnemyModel = new BossEnemyModel( );
-            bossEnemyController = new BossEnemyController( bossEnemyView, bossEnemyModel );
+            bossView = GameObject.Instantiate<BossEnemyView>( bossPrefab, enemyTransform.position, Quaternion.identity );
+            bossView.gameObject.SetActive( false );
+            bossModel = new BossEnemyModel( );
+            bossController = new BossEnemyController( bossView, bossModel );
         }
-
-/*        private void CreateSmallEnemyMVC()
-        {
-            this.currentSmallEnemyCount = MaxSmallEnemyCount;
-
-            for(int i=0; i< MaxSmallEnemyCount; i++ )
-            {
-                SmallEnemyView smallEnemyView = GameObject.Instantiate<SmallEnemyView>( smallEnemyPrefab );
-                smallEnemyView.gameObject.SetActive( false );
-                SmallEnemyModel smallEnemyModel = new SmallEnemyModel( );
-                SmallEnemyController smallEnemyController = new SmallEnemyController( smallEnemyView, smallEnemyModel );
-                ReturnToPool( smallEnemyView );
-            }
-        }*/
-
         public void SpawnSmallEnemies()
         {
             for (int i=0; i<MaxSmallEnemyCount; i++ )
@@ -79,12 +64,6 @@ namespace RoboBrawl.Enemy
                 enemySpawnTransformList.Add( element );
             }
             smallEnemyDuplicateList.Clear( );
-        }
-
-        private void KillSmallEnemy( SmallEnemyView smallEnemy)
-        {
-            currentSmallEnemyCount--;
-            ReturnToPool( smallEnemy );
         }
     }
 }

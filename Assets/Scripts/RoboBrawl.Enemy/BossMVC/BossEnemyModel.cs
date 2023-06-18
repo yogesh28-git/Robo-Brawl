@@ -10,8 +10,8 @@ namespace RoboBrawl.Enemy
         public float BulletSpeed { get { return bulletSpeed; } set { } }
         public int Damage { get { return damage; } private set { } }
 
-        private int currHealth = 800;
-        private int maxHealth = 800;
+        private int currHealth = 200;
+        private int maxHealth = 200;
         private int damage = 30;
         private float moveSpeed = 100f;
         private float bulletSpeed = 6f;

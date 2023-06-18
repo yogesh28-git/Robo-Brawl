@@ -81,5 +81,10 @@ namespace RoboBrawl.Player
         {
             return playerController.PlayerModel.GetHealth( );
         }
+        
+        private void OnDestroy( )
+        {
+            Debug.Log( "Destroyed Player" );
+        }
     }
 }

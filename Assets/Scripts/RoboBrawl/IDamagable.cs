@@ -11,5 +11,7 @@ namespace RoboBrawl
         public int GiveDamage( );
 
         public GameObject GetGameObject( );
+
+        public CharacterType GetCharacterType( );
     }
 }

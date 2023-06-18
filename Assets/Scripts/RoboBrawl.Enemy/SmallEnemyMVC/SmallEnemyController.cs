@@ -39,7 +39,7 @@ namespace RoboBrawl.Enemy
             return smallEnemyModel.Damage;
         }
 
-        private void DestroySmallEnemy( )
+        public void DestroySmallEnemy( )
         {
             EnemyService.Instance.ReturnToPool( smallEnemyView );
             smallEnemyModel.ResetHealth( );
@@ -47,6 +47,10 @@ namespace RoboBrawl.Enemy
         public GameObject GetGameObject( )
         {
             return this.smallEnemyView.gameObject;
+        }
+        public CharacterType GetCharacterType( )
+        {
+            return CharacterType.ENEMY;
         }
     }
 }

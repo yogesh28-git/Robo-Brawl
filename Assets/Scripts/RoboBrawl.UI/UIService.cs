@@ -12,16 +12,13 @@ namespace RoboBrawl.UI
         [Header( "In Game UI" )]
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private TextMeshProUGUI startMessage;
+        [SerializeField] private Button restart;
+        [SerializeField] private Button pause;
 
         [Header( "Game End" )]
         [SerializeField] private GameObject inGamePanel;
-        [SerializeField] private GameObject raycastblocker;
-        [SerializeField] private Button restart1;
-        [SerializeField] private Button pause;
         [SerializeField] private Button resume;
-        [SerializeField] private Button restart2;
         [SerializeField] private Button menu;
-
 
         public void Awake( )
         {

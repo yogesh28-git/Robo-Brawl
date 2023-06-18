@@ -15,12 +15,11 @@ namespace RoboBrawl.Enemy
             this.navAgent = agent;
             this.enemyView = enemyView;
             navAgent.enabled = false;
-
-            playerTransformRef = enemyView.GetPlayerTransform( );
             enemyTransformRef = navAgent.gameObject.transform;
         }
         public void OnStateEnter( )
         {
+            playerTransformRef = enemyView.GetPlayerTransform( );
             navAgent.enabled = true;
         }
         public void OnStateUpdate( )

@@ -6,7 +6,7 @@ namespace RoboBrawl.Player
         public float BulletSpeed { get { return bulletSpeed; } set { } }
         public int Damage { get { return damage; } private set { } }
 
-        private int currHealth = 20;
+        private int currHealth = 300;
         private int damage = 30;
         private float moveSpeed = 100f;
         private float bulletSpeed = 10f;

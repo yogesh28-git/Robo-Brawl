@@ -96,7 +96,7 @@ namespace RoboBrawl.Enemy
             { 
                 BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );
                 bullet.SetShooterObject( bossController );
-                yield return new WaitForSeconds( 2f );
+                yield return new WaitForSeconds( 1.5f );
             }
         }
         private IEnumerator SmallEnemySpawner( )

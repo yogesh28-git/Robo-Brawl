@@ -12,7 +12,7 @@ namespace RoboBrawl
         public EventController OnGameWin = new EventController( );
         public EventController OnGameLost = new EventController( );
 
-        private int gameTimeSeconds = 10;
+        private int gameTimeSeconds = 150;
         private int timeLeftSeconds;
         private Coroutine countDownCoroutine;
 

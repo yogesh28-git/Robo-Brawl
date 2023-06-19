@@ -19,7 +19,6 @@ namespace RoboBrawl.Player
 
         private void OnEnable( )
         {
-            Debug.Log( "PlayerService is Listening" );
             GameManagerService.Instance.OnGameStart.AddListener( SpawnPlayer );
         }
         private void SpawnPlayer( )

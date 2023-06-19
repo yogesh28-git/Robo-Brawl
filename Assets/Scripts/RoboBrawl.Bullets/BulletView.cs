@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoboBrawl.Bullets
 {
     public class BulletView : MonoBehaviour
     {
-        private bool isShooting = false;
         private Vector3 startingPoint;
         private float travelDistance = 7f;
         private float bulletSpeed = 10f;

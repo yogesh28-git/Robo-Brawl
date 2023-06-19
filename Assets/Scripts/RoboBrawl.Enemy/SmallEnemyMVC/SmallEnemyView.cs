@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RoboBrawl.Bullets;
@@ -20,26 +19,6 @@ namespace RoboBrawl.Enemy
         private Coroutine shootCoroutine;
         private Transform playerTransform;
 
-        private void Awake( )
-        {
-            chaseState = new EnemyChaseState( agent, this );
-            attackState = new EnemyAttackState( this, transform );
-        }
-        private void Start( )
-        {
-            GameManagerService.Instance.OnGameOver.AddListener( smallEnemyController.DestroySmallEnemy );
-        }
-
-        private void OnEnable( )
-        {
-            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
-            currentState = chaseState;
-            currentState.OnStateEnter( );
-        }
-        private void Update( )
-        {
-            currentState?.OnStateUpdate( );
-        }
         public void SetController( SmallEnemyController smallEnemyController )
         {
             this.smallEnemyController = smallEnemyController;
@@ -57,7 +36,7 @@ namespace RoboBrawl.Enemy
 
         public void ChangeStateTo( EnemyStateEnum state )
         {
-            if(state == EnemyStateEnum.PATROL )
+            if ( state == EnemyStateEnum.PATROL )
             {
                 return;
             }
@@ -74,17 +53,6 @@ namespace RoboBrawl.Enemy
             currentState.OnStateEnter( );
         }
 
-        private IEnumerator ShootingCoroutine( )
-        {
-            yield return new WaitForSeconds( 2f );
-            while ( true )
-            {
-                BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );
-                bullet.SetShooterObject( smallEnemyController );
-                yield return new WaitForSeconds( 3f );
-            }
-        }
-
         public Transform GetPlayerTransform( )
         {
             return playerTransform;
@@ -98,6 +66,38 @@ namespace RoboBrawl.Enemy
         public int GetHealth( )
         {
             return smallEnemyController.SmallEnemyModel.GetHealth( );
+        }
+
+        private void Awake( )
+        {
+            chaseState = new EnemyChaseState( agent, this );
+            attackState = new EnemyAttackState( this, transform );
+        }
+        private void OnEnable( )
+        {
+            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
+            currentState = chaseState;
+            currentState.OnStateEnter( );
+        }
+        private void Start( )
+        {
+            GameManagerService.Instance.OnGameOver.AddListener( smallEnemyController.DestroySmallEnemy );
+        }
+        
+        private void Update( )
+        {
+            currentState?.OnStateUpdate( );
+        }
+        
+        private IEnumerator ShootingCoroutine( )
+        {
+            yield return new WaitForSeconds( 2f );
+            while ( true )
+            {
+                BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );
+                bullet.SetShooterObject( smallEnemyController );
+                yield return new WaitForSeconds( 3f );
+            }
         }
 
         private void OnDestroy( )

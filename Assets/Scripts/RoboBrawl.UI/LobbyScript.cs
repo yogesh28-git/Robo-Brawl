@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RoboBrawl
+namespace RoboBrawl.UI
 {
     public class LobbyScript : MonoBehaviour
     {
@@ -14,10 +14,12 @@ namespace RoboBrawl
         }
         private void PlayGame( )
         {
+            AudioManagerService.Instance.PlaySfx( SoundType.buttonClick );
             GameManagerService.Instance.LoadGameScene( );
         }
         private void QuitGame( )
         {
+            AudioManagerService.Instance.PlaySfx( SoundType.buttonClick );
             Application.Quit( );
         }
     }

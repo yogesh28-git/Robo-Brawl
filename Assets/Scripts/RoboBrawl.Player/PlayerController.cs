@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoboBrawl.Player
@@ -56,7 +54,8 @@ namespace RoboBrawl.Player
             PlayerModel.SetHealth( newHealth );
             if ( newHealth <= 0 )
             {
-                DestroyPlayer( );
+                GameManagerService.Instance.OnGameOver.InvokeEvent( );
+                GameManagerService.Instance.OnGameLost.InvokeEvent( );
             }
         }
 
@@ -64,13 +63,6 @@ namespace RoboBrawl.Player
         {
             return PlayerModel.Damage;
         }
-
-        private void DestroyPlayer( )
-        {
-            PlayerView.gameObject.SetActive( false );
-            GameManagerService.Instance.OnGameOver.InvokeEvent( );
-        }
-
         public GameObject GetGameObject( )
         {
             return this.PlayerView.gameObject;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RoboBrawl.Bullets;
@@ -21,23 +20,7 @@ namespace RoboBrawl.Enemy
         private Coroutine spawnCoroutine;
         private Transform playerTransform;
 
-        private void Start( )
-        {
-            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
-            patrolState = new EnemyPatrolState( agent, this );
-            chaseState = new EnemyChaseState( agent , this );
-            attackState = new EnemyAttackState( this , transform);
-
-            currentState = patrolState;
-            currentState.OnStateEnter();
-            spawnCoroutine = StartCoroutine( SmallEnemySpawner() );
-        }
-        private void Update( )
-        {
-            currentState.OnStateUpdate( );
-        }
-
-        public void SetController(BossEnemyController bossController )
+        public void SetController( BossEnemyController bossController )
         {
             this.bossController = bossController;
         }
@@ -54,41 +37,27 @@ namespace RoboBrawl.Enemy
         {
             StopCoroutine( shootCoroutine );
         }
-        private IEnumerator ShootingCoroutine( )
+        public void StartSpawning( )
         {
-            yield return new WaitForSeconds( 2f );
-            while ( true )
-            { 
-                BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );
-                bullet.SetShooterObject( bossController );
-                yield return new WaitForSeconds( 2f );
-            }
+            spawnCoroutine = StartCoroutine( SmallEnemySpawner( ) );
         }
-
         public void StopSpawning( )
         {
             StopCoroutine( spawnCoroutine );
         }
-
-        private IEnumerator SmallEnemySpawner( )
-        {
-            while ( true )
-            {
-                EnemyService.Instance.SpawnSmallEnemies( );
-                yield return new WaitForSeconds( 45f );
-            }
-        }
-
         public void ChangeStateTo( EnemyStateEnum state )
         {
             currentState.OnStateExit( );
             switch ( state )
             {
-                case EnemyStateEnum.PATROL: currentState = patrolState;
+                case EnemyStateEnum.PATROL:
+                    currentState = patrolState;
                     break;
-                case EnemyStateEnum.CHASE: currentState = chaseState;
+                case EnemyStateEnum.CHASE:
+                    currentState = chaseState;
                     break;
-                case EnemyStateEnum.ATTACK: currentState = attackState;
+                case EnemyStateEnum.ATTACK:
+                    currentState = attackState;
                     break;
             }
             currentState.OnStateEnter( );
@@ -102,6 +71,41 @@ namespace RoboBrawl.Enemy
         public int GetHealth( )
         {
             return bossController.BossModel.GetHealth( );
+        }
+
+        private void Start( )
+        {
+            playerTransform = PlayerService.Instance.PlayerController.PlayerView.transform;
+            patrolState = new EnemyPatrolState( agent, this );
+            chaseState = new EnemyChaseState( agent , this );
+            attackState = new EnemyAttackState( this , transform);
+
+            currentState = patrolState;
+            currentState.OnStateEnter();
+
+            StartSpawning( );
+        }
+        private void Update( )
+        {
+            currentState.OnStateUpdate( );
+        }
+        private IEnumerator ShootingCoroutine( )
+        {
+            yield return new WaitForSeconds( 2f );
+            while ( true )
+            { 
+                BulletView bullet = BulletService.Instance.GetFromPool( bulletSpawnPos );
+                bullet.SetShooterObject( bossController );
+                yield return new WaitForSeconds( 2f );
+            }
+        }
+        private IEnumerator SmallEnemySpawner( )
+        {
+            while ( true )
+            {
+                EnemyService.Instance.SpawnSmallEnemies( );
+                yield return new WaitForSeconds( 45f );
+            }
         }
     }
 }

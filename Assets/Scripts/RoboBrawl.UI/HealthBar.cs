@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RoboBrawl
+namespace RoboBrawl.UI
 {
     public class HealthBar : MonoBehaviour
     {
@@ -18,7 +16,7 @@ namespace RoboBrawl
 
         private void Start( )
         {
-            this.character = characterTransform.gameObject.GetComponent<ICharacterView>( );
+            character = characterTransform.gameObject.GetComponent<ICharacterView>( );
 
             maxHealth = character.GetHealth( );
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RoboBrawl.Enemy
@@ -33,20 +31,15 @@ namespace RoboBrawl.Enemy
             bossModel.SetHealth( newHealth );
             if ( newHealth < 0 )
             {
-                DestroyBoss( );
+                bossView.StopSpawning( );
+                GameManagerService.Instance.OnGameOver.InvokeEvent( );
+                GameManagerService.Instance.OnGameWin.InvokeEvent( );
             }
         }
 
         public int GiveDamage( )
         {
             return bossModel.Damage;
-        }
-
-        private void DestroyBoss( )
-        {
-            BossView.StopSpawning( );
-            bossView.gameObject.SetActive( false );
-            GameManagerService.Instance.OnGameOver.InvokeEvent( );
         }
 
         public GameObject GetGameObject( )

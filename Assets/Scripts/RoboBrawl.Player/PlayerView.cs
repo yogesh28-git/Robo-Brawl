@@ -15,7 +15,6 @@ namespace RoboBrawl.Player
         private float verticalInput;
         private bool isShooting = false;
 
-        //Ammo Reloading Parameters
         private float maxAmmoBlockSize = 3f;
         private float ammoBlocks = 3f;
         private Coroutine ammoRefillCoroutine;
@@ -28,6 +27,16 @@ namespace RoboBrawl.Player
         {
             this.playerController = playerController;
         }
+        public IDamagable GetController( )
+        {
+            return playerController;
+        }
+
+        public int GetHealth( )
+        {
+            return playerController.PlayerModel.GetHealth( );
+        }
+
         private void Update( )
         {
             HandleInput( );
@@ -70,21 +79,6 @@ namespace RoboBrawl.Player
                 ammoBlocks += 0.1f;
                 ammoBarScript.UpdateAmmoBar( ammoBlocks );
             }
-        }
-
-        public IDamagable GetController( )
-        {
-            return playerController;
-        }
-
-        public int GetHealth( )
-        {
-            return playerController.PlayerModel.GetHealth( );
-        }
-        
-        private void OnDestroy( )
-        {
-            Debug.Log( "Destroyed Player" );
         }
     }
 }

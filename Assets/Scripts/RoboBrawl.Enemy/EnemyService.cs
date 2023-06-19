@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ namespace RoboBrawl.Enemy
 
         [Header( "Boss Enemy" )]
         [SerializeField] private BossEnemyView bossPrefab;
-        [SerializeField] private Transform bossSpawnTransform;
         [SerializeField] private Transform[] patrolPoints;
 
         [Header( "Small Robot Enemy" )]
@@ -25,11 +23,6 @@ namespace RoboBrawl.Enemy
         private BossEnemyModel bossModel;
         private BossEnemyView bossView;
 
-        private void OnEnable( )
-        {
-            GameManagerService.Instance.OnGameStart.AddListener( SpawnBoss );
-        }
-
         public override SmallEnemyView CreateNewItem( )
         {
             SmallEnemyView smallEnemyView = GameObject.Instantiate<SmallEnemyView>( smallEnemyPrefab, this.transform);
@@ -39,15 +32,7 @@ namespace RoboBrawl.Enemy
 
             return smallEnemyView;
         }
-        private void SpawnBoss( )
-        {
-            int randIndex = Random.Range( 0, enemySpawnTransformList.Count );
-            Transform enemyTransform = enemySpawnTransformList[randIndex];
-            bossView = GameObject.Instantiate<BossEnemyView>( bossPrefab, enemyTransform.position, Quaternion.identity );
-            bossView.gameObject.SetActive( false );
-            bossModel = new BossEnemyModel( );
-            bossController = new BossEnemyController( bossView, bossModel );
-        }
+        
         public void SpawnSmallEnemies()
         {
             for (int i=0; i<MaxSmallEnemyCount; i++ )
@@ -64,6 +49,21 @@ namespace RoboBrawl.Enemy
                 enemySpawnTransformList.Add( element );
             }
             smallEnemyDuplicateList.Clear( );
+        }
+
+        private void OnEnable( )
+        {
+            GameManagerService.Instance.OnGameStart.AddListener( SpawnBoss );
+        }
+
+        private void SpawnBoss( )
+        {
+            int randIndex = Random.Range( 0, enemySpawnTransformList.Count );
+            Transform enemyTransform = enemySpawnTransformList[randIndex];
+            bossView = GameObject.Instantiate<BossEnemyView>( bossPrefab, enemyTransform.position, Quaternion.identity );
+            bossView.gameObject.SetActive( false );
+            bossModel = new BossEnemyModel( );
+            bossController = new BossEnemyController( bossView, bossModel );
         }
     }
 }

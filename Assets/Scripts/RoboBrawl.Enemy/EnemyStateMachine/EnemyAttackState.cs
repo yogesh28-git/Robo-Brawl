@@ -18,11 +18,6 @@ namespace RoboBrawl.Enemy
             enemyView.StartShooting( );
         }
 
-        public void OnStateExit( )
-        {
-            enemyView.StopShooting( );
-        }
-
         public void OnStateUpdate( )
         {
             Vector3 playerPos = playerTransformRef.position;
@@ -31,6 +26,11 @@ namespace RoboBrawl.Enemy
                 enemyView.ChangeStateTo( EnemyStateEnum.CHASE );
             }
             enemyTransformRef.LookAt(new Vector3(playerPos.x, enemyTransformRef.position.y, playerPos.z));
+        }
+
+        public void OnStateExit( )
+        {
+            enemyView.StopShooting( );
         }
 
         public EnemyStateEnum GetState( )

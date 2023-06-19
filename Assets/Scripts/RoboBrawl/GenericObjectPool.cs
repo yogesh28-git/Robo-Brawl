@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,23 +16,6 @@ namespace RoboBrawl
             {
                 item = CreateNewItem( );
                 item.gameObject.SetActive( false );
-            }
-            else
-            {
-                item = objectPool.Dequeue( );
-            }
-            item.transform.position = spawnPos.position;
-            item.transform.rotation = spawnPos.rotation;
-            item.gameObject.SetActive( true );
-            return item;
-        }
-
-        public virtual U TryGetFromPool( Transform spawnPos )
-        {
-            U item;
-            if ( objectPool.Count == 0 )
-            {
-                return null;
             }
             else
             {
